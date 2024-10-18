@@ -41,8 +41,8 @@ def home():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/<start>;<br/>"
-        f"/api/v1.0/<start>/<end><br/>"
+        f"/api/v1.0/&lt;start&gt;<br/>"
+        f"/api/v1.0/&lt;start&gt;/&lt;end&gt;<br/>"
     )
 
 @app.route("/api/v1.0/precipitation")
@@ -115,9 +115,6 @@ def start_date(start):
         start_date = datetime.datetime.strptime(start, '%Y-%m-%d')
     except ValueError:
         return jsonify({"error": "Invalid date format. Use YYYY-MM-DD."}), 400
-
-    # earliest_date_str = session.query(func.min(measurement.date)).scalar()
-    # earliest_date = datetime.datetime.strptime(earliest_date_str, '%Y-%m-%d')
 
     # Calculate TMIN, TAVG, and TMAX from the specified date
     results = session.query(func.min(measurement.tobs), 
