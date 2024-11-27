@@ -70,7 +70,7 @@ def stations():
     
     # Create our session (link) from Python to the DB    
     session = Session(engine)
-    results = session.query(measurement.station).all()
+    results = session.query(station.station).all()
 
     session.close()
 
